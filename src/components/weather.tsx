@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
+import { NavLink, Outlet } from "react-router";
 
 interface WeatherData {
     location: WeatherLocation;
@@ -135,6 +136,10 @@ interface WeatherData {
   
     return (
       <div>
+         <NavLink to="/">
+            <h2>Dashboard</h2>
+        </NavLink>
+        <Outlet />
         <h1>Weather Data</h1>
         <div className="search">
           <input 

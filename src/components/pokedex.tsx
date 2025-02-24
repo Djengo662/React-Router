@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import CreateCard from './card';
 import CreateButton from './card-btn';
+import { NavLink, Outlet } from 'react-router';
 
 
 interface PokeData {
@@ -94,6 +95,10 @@ interface PokeData {
 
       return (
         <div className="product-container">
+          <NavLink to="/">
+           <h2>Dashboard</h2>
+        </NavLink>
+        <Outlet />
           <div className="button-container">
             <CreateButton onClick={() => loadPokemonUrl(0)} pokeName={"1 - 20"} />
             <CreateButton onClick={() => loadPokemonUrl(21)} pokeName={"21 - 40"} />
