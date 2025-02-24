@@ -8,9 +8,7 @@ export default function Dashboard() {
     <div>
       {isRoot && (
         <>
-        <NavLink to="/" end>
           <h1>Dashboard</h1>
-        </NavLink>
           <nav>
             <NavLink to="components/weather" end>
               <h1 >Weather</h1>
