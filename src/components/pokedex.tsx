@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react';
 import CreateCard from './card';
 import CreateButton from './card-btn';
 import { NavLink, Outlet } from 'react-router';
+import { CiSun } from 'react-icons/ci';
+import { FaMoon } from 'react-icons/fa';
 
 
 interface PokeData {
@@ -49,6 +51,7 @@ interface PokeData {
   function GetPokemon () {
     const [url, setUrl] = useState<string>("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
     const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   
     function loadPokemonUrl(num1: number) {
       const limit = 20;
@@ -93,8 +96,30 @@ interface PokeData {
         }
       }
 
+      const turnModus = () => {
+        setIsDarkMode(!isDarkMode);
+        if (!isDarkMode) {
+          document.body.style.backgroundColor = "black";
+          document.body.style.color = "white";
+        } else {
+          document.body.style.backgroundColor = "white";
+          document.body.style.color = "black";
+        }
+      };
+
       return (
         <div className="product-container">
+          {!isDarkMode ? (
+            <CiSun  style={{ cursor: "pointer", height:"3rem", width: "2rem"}}
+            onClick={turnModus}
+            className="sun" />
+          ) : (
+            <FaMoon
+                      style={{ cursor: "pointer", height: "3rem", width:"2rem"}}
+                      onClick={turnModus}
+                      className="moon"
+                    />
+          )}
           <NavLink to="/">
            <h2>Dashboard</h2>
         </NavLink>
