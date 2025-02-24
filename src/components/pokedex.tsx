@@ -119,7 +119,7 @@ interface PokeData {
                       onClick={turnModus}
                       className="moon"
                     />
-          )}  
+          )}
           <NavLink to="/">
            <h2>Dashboard</h2>
         </NavLink>
