@@ -168,7 +168,7 @@ function WeatherForecast() {
         />
       )}
       <NavLink to="/">
-        <h2>Dashboard</h2>
+        <h2>Dashboard Probe</h2>
       </NavLink>
       <Outlet />
       <h1>Weather Data</h1>
