@@ -49,6 +49,15 @@ function GetPokemon() {
     "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
   );
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
+  const btnContainer = [
+    { btnText: "1 - 20", btnStart: 0 },
+    { btnText: "21 - 40", btnStart: 21},
+    { btnText: "41 - 60", btnStart: 41},
+    { btnText: "61 - 80",btnStart: 61},
+    { btnText: "81 - 100",btnStart: 81},
+    { btnText: "101 - 120",btnStart: 101},
+    { btnText: "121 - 151",btnStart: 121},
+  ];
 
   function loadPokemonUrl(num1: number) {
     const limit = 20;
@@ -70,10 +79,6 @@ function GetPokemon() {
         const pokeResponse = await fetch(poke.url);
         const pokeData: Img = await pokeResponse.json();
         const classColors = getTypeColors(pokeData.types);
-
-        if (pokeData.types.length > 1) {
-          console.log(classColors);
-        }
 
         return {
           name: poke.name,
@@ -117,22 +122,9 @@ function GetPokemon() {
   return (
     <div className="product-container">
       <div className="button-container">
-        <CreateButton onClick={() => loadPokemonUrl(0)} pokeName={"1 - 20"} />
-        <CreateButton onClick={() => loadPokemonUrl(21)} pokeName={"21 - 40"} />
-        <CreateButton onClick={() => loadPokemonUrl(41)} pokeName={"41 - 60"} />
-        <CreateButton onClick={() => loadPokemonUrl(61)} pokeName={"61 - 80"} />
-        <CreateButton
-          onClick={() => loadPokemonUrl(81)}
-          pokeName={"81 - 100"}
-        />
-        <CreateButton
-          onClick={() => loadPokemonUrl(101)}
-          pokeName={"101 - 120"}
-        />
-        <CreateButton
-          onClick={() => loadPokemonUrl(121)}
-          pokeName={"121 - 151"}
-        />
+        {btnContainer.map((x) => (
+          <button onClick={() => loadPokemonUrl(x.btnStart)}>{x.btnText}</button>
+        ))}
       </div>
 
       <div className="pokemon-list">
