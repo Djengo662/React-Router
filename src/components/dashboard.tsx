@@ -41,19 +41,9 @@ export default function Dashboard() {
       <footer className="dashboard__footer">
         <div>Impressum</div>
         <div>Kontakt</div>
-        {!isDarkMode ? (
-          <CiSun
-            style={{ cursor: "pointer", height: "3rem", width: "2rem" }}
-            onClick={turnModus}
-            className="sun"
-          />
-        ) : (
-          <FaMoon
-            style={{ cursor: "pointer", height: "3rem", width: "2rem" }}
-            onClick={turnModus}
-            className="moon"
-          />
-        )}
+        <div style={{ cursor: "pointer" }} onClick={turnModus}>
+          {!isDarkMode ? <CiSun size={"2rem"} /> : <FaMoon size={"2rem"} />}
+        </div>
       </footer>
     </div>
   );
