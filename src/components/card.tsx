@@ -1,3 +1,9 @@
+import { ReactElement } from "react";
+import { FaFire } from "react-icons/fa";
+import { GiHighGrass, GiStoneStack } from "react-icons/gi";
+import { IoIosWater } from "react-icons/io";
+import { MdElectricBolt } from "react-icons/md";
+
 interface CardProps {
   imgSrc: string;
   imgAltTitle: string;
@@ -5,11 +11,25 @@ interface CardProps {
   classColors: string[];
 }
 
-// function GetIconForPokemonType(type: string) {
-//   // TODO:
-// }
+interface PokeIcon {
+  type: string;
+  icon: ReactElement;
+}
+
 
 function CreateCard({ imgSrc, imgAltTitle, title, classColors }: CardProps) {
+  const pokeIcons: PokeIcon[] = [
+    { type: "green", icon: <GiHighGrass />},
+    { type: "red", icon: <FaFire />},
+    { type: "gray", icon: <GiStoneStack />},
+    { type: "yellow", icon: <MdElectricBolt />},
+    { type: "blue", icon: <IoIosWater /> },
+  ];
+  
+  function GetIconForPokemonType(type: string) {
+    const types = pokeIcons.find((x) => x.type === type)
+    return types?.icon
+  }
   return (
     <div className="single-card">
       <div className="img-div">
@@ -29,6 +49,7 @@ function CreateCard({ imgSrc, imgAltTitle, title, classColors }: CardProps) {
                 borderRadius: "50%",
               }}
             >
+              <div>{GetIconForPokemonType(x)}</div>
               {/* {GetIconForPokemonType("")} */}
             </div>
           ))}
