@@ -6,7 +6,6 @@ import { AllRoutes } from "../utils/all-routes";
 
 export default function Dashboard() {
   const location = useLocation();
-  const isRoot = location.pathname === "/";
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const turnModus = () => {
