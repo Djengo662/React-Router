@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router";
 import CreateCard from "./card";
 import CreateButton from "./card-btn";
 
@@ -101,7 +100,6 @@ function GetPokemon() {
 
   return (
     <div className="product-container">
-      <Outlet />
       <div className="button-container">
         <CreateButton onClick={() => loadPokemonUrl(0)} pokeName={"1 - 20"} />
         <CreateButton onClick={() => loadPokemonUrl(21)} pokeName={"21 - 40"} />

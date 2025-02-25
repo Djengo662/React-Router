@@ -24,7 +24,7 @@ a:hover {
 
 body {
   margin: 0;
- 
+
   min-width: 320px;
   min-height: 100vh;
 }
@@ -107,18 +107,33 @@ button:focus-visible {
   justify-content: center;
   width: 100%;
 }
-.list-btn:active{
+.list-btn:active {
   background-color: #747bff;
-} 
+}
 
 .dashboard {
   display: flex;
-  justify-content: space-between ;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
-.dashboard nav {
+.dashboard__nav {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
+
+.dashboard__content {
+  flex: 1;
+}
+
+.dashboard__footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
 .day-div {
   border: 1px solid;
   border-radius: 10px;

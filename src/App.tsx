@@ -1,16 +1,17 @@
+import { Route, Routes } from "react-router";
 import "./App.css";
-import WeatherForecast from "./components/weather";
-import GetPokemon from "./components/pokedex";
-import { Routes, Route } from "react-router";
 import Dashboard from "./components/dashboard";
+import { AllRoutes } from "./utils/all-routes";
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/components/weather" element={<WeatherForecast />} />
-        <Route path="/components/pokedex" element={<GetPokemon />} />
+        <Route path="/" element={<Dashboard />}>
+          {AllRoutes.filter((x) => x.id !== "dashboard").map((x) => {
+            return <Route key={x.id} path={x.path} element={x.element} />;
+          })}
+        </Route>
       </Routes>
     </div>
   );
