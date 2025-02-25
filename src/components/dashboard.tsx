@@ -20,14 +20,16 @@ export default function Dashboard() {
     }
   };
 
+  const currentRoute = AllRoutes.find((y) => y.path === location.pathname);
+
   return (
     <div className="dashboard">
       <>
-        <h1>Dashboard</h1>
+        <h1>{currentRoute != null ? currentRoute.name : "Unbekannt"}</h1>
         <nav className="dashboard__nav">
           {AllRoutes.map((x) => (
             <NavLink key={x.id} to={x.path}>
-              <h3>{x.name}</h3>
+              <div>{x.name}</div>
             </NavLink>
           ))}
         </nav>

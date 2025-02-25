@@ -2,6 +2,7 @@ import Dashboard from "../components/dashboard";
 import Pokedex from "../components/pokedex";
 import WeatherForecast from "../components/weather";
 import { MyRoute } from "../models/route";
+import CurrencyExchange from "../views/currency-exchange";
 
 export const AllRoutes: MyRoute[] = [
   { id: "dashboard", name: "Dashboard", path: "/", element: <Dashboard /> },
@@ -16,5 +17,11 @@ export const AllRoutes: MyRoute[] = [
     name: "Pokémon Dex Data",
     path: "/pokedex",
     element: <Pokedex />,
+  },
+  {
+    id: "currency-exchange",
+    name: "Currency Exchange",
+    path: "/currency-exchange",
+    element: <CurrencyExchange />,
   },
 ];
