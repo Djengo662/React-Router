@@ -19,11 +19,11 @@ interface PokeIcon {
 
 function CreateCard({ imgSrc, imgAltTitle, title, classColors }: CardProps) {
   const pokeIcons: PokeIcon[] = [
-    { type: "green", icon: <GiHighGrass />},
-    { type: "red", icon: <FaFire />},
-    { type: "gray", icon: <GiStoneStack />},
-    { type: "yellow", icon: <MdElectricBolt />},
-    { type: "blue", icon: <IoIosWater /> },
+    { type: "green", icon: <GiHighGrass size={"2rem"}/>},
+    { type: "red", icon: <FaFire size={"2rem"}/>},
+    { type: "gray", icon: <GiStoneStack size={"2rem"}/>},
+    { type: "yellow", icon: <MdElectricBolt size={"2rem"}/>},
+    { type: "blue", icon: <IoIosWater size={"2rem"}/> },
   ];
   
   function GetIconForPokemonType(type: string) {
