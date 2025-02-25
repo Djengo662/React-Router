@@ -2,19 +2,38 @@ interface CardProps {
   imgSrc: string;
   imgAltTitle: string;
   title: string;
-  classColor: string;
+  classColors: string[];
 }
 
-function CreateCard({ imgSrc, imgAltTitle, title, classColor }: CardProps) {
+// function GetIconForPokemonType(type: string) {
+//   // TODO:
+// }
+
+function CreateCard({ imgSrc, imgAltTitle, title, classColors }: CardProps) {
   return (
     <div className="single-card">
       <div className="img-div">
         <img src={imgSrc} alt={imgAltTitle} />
       </div>
       <div>
-        <h3 style={{ backgroundColor: classColor }}>
-          {title}
-        </h3>
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          {classColors.map((x) => (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: x,
+                width: "4rem",
+                height: "4rem",
+                borderRadius: "50%",
+              }}
+            >
+              {/* {GetIconForPokemonType("")} */}
+            </div>
+          ))}
+        </div>
+        <h3>{title}</h3>
       </div>
     </div>
   );

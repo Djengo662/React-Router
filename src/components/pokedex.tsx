@@ -32,8 +32,8 @@ interface Pokemon {
   name: string;
   url: string;
   imgUrl: string;
-  type: string;
-  classColor: string;
+  type: string[];
+  classColor: string[];
 }
 
 interface Type {
@@ -65,17 +65,22 @@ function GetPokemon() {
     const response = await fetch(url);
     const data: Data = await response.json();
 
-    const pokemonList = await Promise.all(
+    const pokemonList: Pokemon[] = await Promise.all(
       data.results.map(async (poke) => {
         const pokeResponse = await fetch(poke.url);
         const pokeData: Img = await pokeResponse.json();
-        const classColor = getTypeColor(pokeData.types[0].type.name);
+        const classColors = getTypeColors(pokeData.types);
+
+        if (pokeData.types.length > 1) {
+          console.log(classColors);
+        }
+
         return {
           name: poke.name,
           url: poke.url,
           imgUrl: pokeData.sprites.other.dream_world.front_default,
-          type: classColor,
-          classColor: classColor,
+          type: classColors,
+          classColor: classColors,
         };
       })
     );
@@ -83,19 +88,30 @@ function GetPokemon() {
     setAllPokemon(pokemonList);
   }
 
-  function getTypeColor(type: string) {
-    switch (type) {
-      case "fire":
-        return "red";
-      case "water":
-        return "blue";
-      case "grass":
-        return "green";
-      case "electric":
-        return "yellow";
-      default:
-        return "gray";
+  function getTypeColors(type: Type[]) {
+    const colorClassArray = [];
+
+    for (const pokeTyp of type) {
+      switch (pokeTyp.type.name) {
+        case "fire":
+          colorClassArray.push("red");
+          break;
+        case "water":
+          colorClassArray.push("blue");
+          break;
+        case "grass":
+          colorClassArray.push("green");
+          break;
+        case "electric":
+          colorClassArray.push("yellow");
+          break;
+        default:
+          colorClassArray.push("gray");
+          break;
+      }
     }
+
+    return colorClassArray;
   }
 
   return (
@@ -126,7 +142,7 @@ function GetPokemon() {
             imgSrc={pokemon.imgUrl}
             imgAltTitle={pokemon.name}
             title={pokemon.name}
-            classColor={pokemon.classColor}
+            classColors={pokemon.classColor}
           />
         ))}
       </div>
