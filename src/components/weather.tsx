@@ -67,8 +67,11 @@ class WeekdayHelper {
 }
 
 function WeatherForecast() {
+  const forecastDays = 7;
+  const apiKey = "e32093e7e154445a8db74744252102&q";
+
   const [url, setUrl] = useState<string>(
-    "https://api.weatherapi.com/v1/forecast.json?key=e32093e7e154445a8db74744252102&q=Marburg&days=3"
+    `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Marburg&days=${forecastDays}`
   );
   const [inputValue, setInputValue] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData>();
@@ -78,10 +81,7 @@ function WeatherForecast() {
   };
 
   const handleSubmit = (val: string) => {
-    const newUrl =
-      "https://api.weatherapi.com/v1/forecast.json?key=e32093e7e154445a8db74744252102&q=" +
-      val +
-      "&days=3";
+    const newUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${val}&days=${forecastDays}`;
     setUrl(newUrl);
   };
 
