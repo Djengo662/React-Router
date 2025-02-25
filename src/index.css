@@ -24,8 +24,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-
+ 
   min-width: 320px;
   min-height: 100vh;
 }
@@ -109,8 +108,17 @@ button:focus-visible {
 }
 .list-btn:active{
   background-color: #747bff;
-}
+} 
 
+.dashboard {
+  display: flex;
+  justify-content: space-between ;
+}
+.dashboard nav {
+  display: flex;
+  gap: 1rem;
+
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

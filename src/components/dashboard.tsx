@@ -5,7 +5,7 @@ export default function Dashboard() {
   const isRoot = location.pathname === "/";
 
   return (
-    <div>
+    <div className="dashboard">
       {isRoot && (
         <>
           <h1>Dashboard</h1>

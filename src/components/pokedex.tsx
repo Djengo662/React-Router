@@ -121,7 +121,7 @@ interface PokeData {
                     />
           )}
           <NavLink to="/">
-           <h2>Dashboard</h2>
+           <h2>Dashboard</h2> //was geändert
         </NavLink>
         <Outlet />
           <div className="button-container">

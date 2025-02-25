@@ -156,10 +156,10 @@ function WeatherForecast() {
     <div>
       {isDarkMode ? (
         <CiSun
-          style={{ cursor: "pointer", height:"3rem", width: "2rem"}}
-          onClick={turnModus}
-          className="sun"
-        />
+        style={{ cursor: "pointer", height:"3rem", width: "2rem"}}
+        onClick={turnModus}
+        className="sun"
+      />
       ) : (
         <FaMoon
           style={{ cursor: "pointer", height: "3rem", width:"2rem"}}
