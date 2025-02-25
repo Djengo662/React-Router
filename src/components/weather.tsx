@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
-import { CiSearch, CiSun } from "react-icons/ci";
-import { FaMoon } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router";
+import { useEffect, useState } from "react";
+import { CiSearch } from "react-icons/ci";
+import { Outlet } from "react-router";
 
 interface WeatherData {
   location: WeatherLocation;
@@ -74,7 +73,6 @@ function WeatherForecast() {
   );
   const [inputValue, setInputValue] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData>();
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -135,35 +133,8 @@ function WeatherForecast() {
       : { temp: 0, icon: "" };
   }
 
-  const turnModus = () => {
-    setIsDarkMode(!isDarkMode);
-    if (!isDarkMode) {
-      document.body.style.backgroundColor = "black";
-      document.body.style.color = "white";
-    } else {
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
-    }
-  };
-
   return (
     <div>
-      {isDarkMode ? (
-        <CiSun
-          style={{ cursor: "pointer", height: "3rem", width: "2rem" }}
-          onClick={turnModus}
-          className="sun"
-        />
-      ) : (
-        <FaMoon
-          style={{ cursor: "pointer", height: "3rem", width: "2rem" }}
-          onClick={turnModus}
-          className="moon"
-        />
-      )}
-      <NavLink to="/">
-        <h2>Dashboard</h2>
-      </NavLink>
       <Outlet />
       <h1>Weather Data</h1>
       <div className="search">
