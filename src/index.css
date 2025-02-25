@@ -68,6 +68,7 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  padding-top: 2rem;
 }
 
 .pokemon-list {
@@ -117,8 +118,38 @@ button:focus-visible {
 .dashboard nav {
   display: flex;
   gap: 1rem;
-
 }
+.day-div {
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  height: 8rem;
+  width: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.day-div label {
+  position: absolute;
+  background-color: white;
+  top: -1rem;
+  font-weight: bold;
+}
+
+.day-div p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.day-div img {
+  width: 3rem;
+  height: 3rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -47,6 +47,13 @@ interface DayTemp {
   maxtemp_c: number;
   mintemp_c: number;
   avgtemp_c: number;
+  condition: Icon;
+}
+
+interface Icon {
+  text: string;
+  icon: string;
+  code: number;
 }
 
 class WeekdayHelper {
@@ -61,18 +68,12 @@ class WeekdayHelper {
   }
 }
 
-interface WeekdayToTemp {
-  date: string;
-  temp: number;
-}
-
 function WeatherForecast() {
   const [url, setUrl] = useState<string>(
     "https://api.weatherapi.com/v1/forecast.json?key=e32093e7e154445a8db74744252102&q=Marburg&days=3"
   );
   const [inputValue, setInputValue] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData>();
-  const [weekdayToTemp, setWeekdayToTemp] = useState<WeekdayToTemp[]>([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,17 +97,7 @@ function WeatherForecast() {
   async function fetchData() {
     const request = await fetch(url);
     const data: WeatherData = await request.json();
-
-    const arr: WeekdayToTemp[] = [];
-
-    for (const entry of data.forecast.forecastday) {
-      arr.push({ date: entry.date, temp: entry.day.maxtemp_c });
-    }
-
-    setWeekdayToTemp(arr);
     setWeatherData(data);
-
-    console.log(data);
     return data;
   }
 
@@ -129,16 +120,19 @@ function WeatherForecast() {
   ];
 
   function castDay(day: number) {
-    if (weatherData == null) return 0;
+    if (weatherData == null) return { temp: 0, icon: "" };
 
     const foundEntry = weatherData.forecast.forecastday.find((item) => {
       const entryDate = new Date(item.date).getDay();
-      if (entryDate === day) {
-        return item;
-      }
+      return entryDate === day;
     });
 
-    return foundEntry != null ? foundEntry.day.maxtemp_c : 0;
+    return foundEntry != null
+      ? {
+          temp: foundEntry.day.maxtemp_c,
+          icon: foundEntry.day.condition.icon,
+        }
+      : { temp: 0, icon: "" };
   }
 
   const turnModus = () => {
@@ -156,13 +150,13 @@ function WeatherForecast() {
     <div>
       {isDarkMode ? (
         <CiSun
-        style={{ cursor: "pointer", height:"3rem", width: "2rem"}}
-        onClick={turnModus}
-        className="sun"
-      />
+          style={{ cursor: "pointer", height: "3rem", width: "2rem" }}
+          onClick={turnModus}
+          className="sun"
+        />
       ) : (
         <FaMoon
-          style={{ cursor: "pointer", height: "3rem", width:"2rem"}}
+          style={{ cursor: "pointer", height: "3rem", width: "2rem" }}
           onClick={turnModus}
           className="moon"
         />
@@ -193,27 +187,22 @@ function WeatherForecast() {
           <img src={weatherData.current.condition.icon} alt="Weather Icon" />
           <div className="forecast">
             {days.map((x) => {
+              const dayData = castDay(x.day);
               return (
-                <div key={x.day}>
-                  <div>{x.longDescription}</div>
-                  <div>{castDay(x.day)} °C</div>
+                <div key={x.day} className="day-div">
+                  <label>{x.shortDescription}</label>
+                  <p>{dayData.temp} °C</p>
+                  {dayData.icon && (
+                    <img
+                      src={dayData.icon}
+                      alt="Weather Icon"
+                      style={{ width: "2rem", height: "2rem" }}
+                    />
+                  )}
                 </div>
               );
             })}
           </div>
-
-          {weekdayToTemp.map((x) => {
-            return (
-              <div key={x.date}>
-                <div>
-                  {new Date(x.date).toLocaleDateString("de-DE", {
-                    dateStyle: "full",
-                  })}
-                </div>
-                <div>{x.temp} °C</div>
-              </div>
-            );
-          })}
         </div>
       ) : (
         <p>Loading...</p>
