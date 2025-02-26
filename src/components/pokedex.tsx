@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CreateCard from "./card";
-import CreateButton from "./card-btn";
+
 
 interface PokeData {
   name: string;
@@ -123,7 +123,7 @@ function GetPokemon() {
     <div className="product-container">
       <div className="button-container">
         {btnContainer.map((x) => (
-          <button onClick={() => loadPokemonUrl(x.btnStart)}>{x.btnText}</button>
+          <button key={x.btnStart} onClick={() => loadPokemonUrl(x.btnStart)}>{x.btnText}</button>
         ))}
       </div>
 

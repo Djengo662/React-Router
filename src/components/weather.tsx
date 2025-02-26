@@ -68,7 +68,7 @@ class WeekdayHelper {
 
 function WeatherForecast() {
   const forecastDays = 7;
-  const apiKey = "e32093e7e154445a8db74744252102&q";
+  const apiKey= import.meta.env.VITE_APP_API_KEY;
 
   const [url, setUrl] = useState<string>(
     `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Marburg&days=${forecastDays}`
@@ -95,15 +95,13 @@ function WeatherForecast() {
     const request = await fetch(url);
     const data: WeatherData = await request.json();
     setWeatherData(data);
+    console.log(data.location.name);
+    console.log(url);
     return data;
   }
 
   useEffect(() => {
-    async function getData() {
-      const data: WeatherData = await fetchData();
-      setWeatherData(data);
-    }
-    getData();
+    fetchData();
   }, [url]);
 
   const days: WeekdayHelper[] = [

@@ -33,7 +33,6 @@ export default function Dashboard() {
           ))}
         </nav>
       </>
-
       <div className="dashboard__content">
         <Outlet />
       </div>

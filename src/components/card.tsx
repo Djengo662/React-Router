@@ -39,6 +39,7 @@ function CreateCard({ imgSrc, imgAltTitle, title, classColors }: CardProps) {
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           {classColors.map((x) => (
             <div
+            key={Math.random()}
               style={{
                 display: "flex",
                 alignItems: "center",
