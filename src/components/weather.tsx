@@ -68,10 +68,11 @@ class WeekdayHelper {
 
 function WeatherForecast() {
   const forecastDays = 7;
-  const apiKey= import.meta.env.VITE_APP_API_KEY;
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
+  const baseUrl = import.meta.env.VITE_APP_API_URL;
 
   const [url, setUrl] = useState<string>(
-    `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Marburg&days=${forecastDays}`
+    `${baseUrl}${apiKey}&q=Marburg&days=${forecastDays}`
   );
   const [inputValue, setInputValue] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData>();
@@ -81,7 +82,7 @@ function WeatherForecast() {
   };
 
   const handleSubmit = (val: string) => {
-    const newUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${val}&days=${forecastDays}`;
+    const newUrl = `${baseUrl}${apiKey}&q=${val}&days=${forecastDays}`;
     setUrl(newUrl);
   };
 
@@ -95,8 +96,6 @@ function WeatherForecast() {
     const request = await fetch(url);
     const data: WeatherData = await request.json();
     setWeatherData(data);
-    console.log(data.location.name);
-    console.log(url);
     return data;
   }
 
