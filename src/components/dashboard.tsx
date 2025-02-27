@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { CiSun } from "react-icons/ci";
-import { FaMoon } from "react-icons/fa";
 import { NavLink, Outlet, useLocation } from "react-router";
 import { AllRoutes } from "../utils/all-routes";
+import { FiMoon } from "react-icons/fi";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -41,7 +41,7 @@ export default function Dashboard() {
         <div>Impressum</div>
         <div>Kontakt</div>
         <div style={{ cursor: "pointer" }} onClick={turnModus}>
-          {!isDarkMode ? <CiSun size={"2rem"} /> : <FaMoon size={"2rem"} />}
+          {isDarkMode ? <CiSun size={"2rem"} /> : <FiMoon size={"2rem"} />}
         </div>
       </footer>
     </div>

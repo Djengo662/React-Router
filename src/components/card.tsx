@@ -1,9 +1,9 @@
 import { ReactElement, useEffect, useState } from "react";
 import { FaFire } from "react-icons/fa";
 import { GiHighGrass, GiStoneStack } from "react-icons/gi";
-import { IoIosWater } from "react-icons/io";
 import { MdElectricBolt } from "react-icons/md";
 import { PokeData } from "./pokedex";
+import { IoWaterOutline } from "react-icons/io5";
 
 interface Pokemon {
   name: string;
@@ -35,7 +35,7 @@ function CreateCard({ pokemon }: { pokemon: PokeData[] }) {
     { type: "red", icon: <FaFire size="2rem" /> },
     { type: "gray", icon: <GiStoneStack size="2rem" /> },
     { type: "yellow", icon: <MdElectricBolt size="2rem" /> },
-    { type: "blue", icon: <IoIosWater size="2rem" /> },
+    { type: "blue", icon: <IoWaterOutline  size="2rem" /> },
   ];
 
   function GetIconForPokemonType(types: Type[]) {

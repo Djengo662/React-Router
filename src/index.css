@@ -145,8 +145,9 @@ button:focus-visible {
   height: 3rem;
 }
 .pokedex{
-  width:100%;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 @media (prefers-color-scheme: light) {
   :root {
