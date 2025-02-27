@@ -27,6 +27,27 @@ interface Type {
   };
 }
 
+interface Img {
+  sprites: {
+    other: {
+      dream_world: {
+        front_default: string;
+        front_female?: string;
+      };
+    };
+  };
+  types: Type[];
+}
+
+interface Type {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
+}
+
+
 function CreateCard({ pokemon }: { pokemon: PokeData[] }) {
   const [pokeImg, setPokeImg] = useState<Pokemon[]>();
 
@@ -53,25 +74,33 @@ function CreateCard({ pokemon }: { pokemon: PokeData[] }) {
     return matches;
   }
   
-  async function getPokeUrl() {
-    const pokeDataArray: Pokemon[] = [];
-    for (const poke of pokemon) {
+ async function getPokeUrl() {
+  const pokeDataArray: Pokemon[] = [];
+  
+  for (const poke of pokemon) {
+    
       const response = await fetch(poke.url);
-      const data = await response.json();
+      const data: Img = await response.json();
+
+      const types = data.types.map(type => type.type.name);
+      const imgUrl = data.sprites.other.dream_world.front_default;
 
       const newPokemon: Pokemon = {
         name: poke.name,
         url: poke.url,
-        imgUrl: data.sprites.other.dream_world.front_default,
-        type: data.types.map((typeObj: any) => typeObj.type.name),
+        imgUrl: imgUrl,
+        type: types,
         classColor: getTypeColors(data.types),
         icon: GetIconForPokemonType(data.types),
       };
 
       pokeDataArray.push(newPokemon);
-    }
-    setPokeImg(pokeDataArray);
+   
   }
+  
+  setPokeImg(pokeDataArray);
+}
+
 
   function getTypeColors(type: Type[]) {
     const colorClassArray: string[] = [];

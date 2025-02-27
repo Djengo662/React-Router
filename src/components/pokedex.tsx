@@ -6,7 +6,7 @@ export interface PokeData {
   url: string;
 }
 
-interface PokeApiResponse {
+ interface PokeApiResponse {
   count: number;
   next: string;
   previous: string | null;
@@ -38,7 +38,6 @@ function GetPokemon() {
   useEffect(() => {
     fetchData();
   }, [url]);
-
 
   //Loading Pokemons
   async function fetchData() {
